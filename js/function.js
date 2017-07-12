@@ -33,6 +33,7 @@ function revise(res) {
     }
 }
 
+
 function companyInfo(res) {
     var com = res.data.company;
     $("#name").text(com.CompanyName);

@@ -33,7 +33,6 @@ function enterinfo1(data) {
         dataType: "json",
         data: data,
         success: function (res) {
-            console.log(res);
             localStorage.setItem("companyID", res.data.companyID);
             window.location.href = "enterinfo2.html";
 

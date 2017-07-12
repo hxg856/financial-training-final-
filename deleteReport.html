@@ -39,18 +39,27 @@
                     $(".container").before(data);
                 });
                 $("#delete").click(function() {
-                    var reportID = $("#deleteReport").val();
-
-                    if (!reportID) {
-                        alert("公司ID不能为空，请重新输入）");
-                        return false;
+                    var reportID = $("#deleteReport");
+                    if (!reportID.val()) {
+                        if (!reportID.next().hasClass("bg-danger")) {
+                            var $alertInfo = $("<div class='bg-danger'>报告ID不能为空，请重新输入</div>");
+                            reportID.after($alertInfo);
+                            return false;
+                        } else {
+                            return false;
+                        }
                     }
-                    if (!testReportID(reportID)) {
-                        alert("请按照正确格式的公司ID");
-                        return false;
+                    if (!testReportID(reportID.val())) {
+                        if (!reportID.next().hasClass("bg-danger")) {
+                            var $alertInfo = $("<div class='bg-danger'>请按照正确格式的报告ID</div>");
+                            reportID.after($alertInfo);
+                            return false;
+                        } else {
+                            return false;
+                        }
                     }
                     var data = {
-                        reportID: reportID
+                        reportID: reportID.val()
                     };
                     delete_report(data);
                 })

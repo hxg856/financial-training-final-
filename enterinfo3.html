@@ -17,7 +17,7 @@
         <div class="header">
             <h1>请继续填写贷款信息</h1>
         </div>
-        <div class="bodepart">
+        <div class="bodypart">
             <div class="form-horizontal">
                 <div class="form-group">
                     <label for="twelfth" class="col-sm-4 col-lg-4 col-md-4 control-label">借款人品质</label>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="form-group divCenter">
                     <button class="btn btn-default" type="submit" id="createinfo3">下一步</button>
-                    <button class="btn btn-default" id="returnHome" style="display:inline-block">返回</button>
+                    <!--                    <button class="btn btn-default" id="returnHome" style="display:inline-block">返回</button>-->
                 </div>
             </div>
         </div>
@@ -137,53 +137,113 @@
                     loanOrNot: $("#loanOrNot").val(),
                     repayOrNot: $("#repayOrNot").val()
                 };
-                //逻辑未加
-                if (!$("#twelfth").val()) {
-                    alert("过去12月的盈利不能为空，请重新输入");
-                    return false;
-                }
-                if (!$("#ninth").val()) {
-                    alert("过去9月的盈利不能为空，请重新输入");
-                    return false;
-                }
-                if (!$("#sixth").val()) {
-                    alert("过去6月的盈利不能为空，请重新输入");
-                    return false;
-                }
-                if (!$("#third").val()) {
-                    alert("过去3月的盈利不能为空，请重新输入");
-                    return false;
-                }
-                if (!$("#first").val()) {
-                    alert("过去1月的盈利不能为空，请重新输入");
-                    return false;
-                }
-                if (!mortgage) {
-                    alert("贷款抵押担保不能为空，请重新输入）");
-                    return false;
-                }
 
-                if (!testAccount(historicalProfit.twelfth)) {
-                    alert("请按照正确格式的输入过去12月的盈利");
-                    return false;
-                }
-                if (!testAccount(historicalProfit.ninth)) {
-                    alert("请按照正确格式的输入过去9月的盈利");
-                    return false;
-                }
-                if (!testAccount(historicalProfit.sixth)) {
-                    alert("请按照正确格式的输入过去6月的盈利");
-                    return false;
-                }
-                if (!testAccount(historicalProfit.third)) {
-                    alert("请按照正确格式的输入过去3月的盈利");
-                    return false;
-                }
-                if (!testAccount(historicalProfit.first)) {
-                    alert("请按照正确格式的输入过去1月的盈利");
-                    return false;
-                }
+                var twelfth = $("#twelfth");
+                var ninth = $("#ninth");
+                var sixth = $("#sixth");
+                var third = $("#third");
+                var first = $("#first");
+                var mortgage1 = $("#mortgage");
 
+                if (!twelfth.val()) {
+                    if (!twelfth.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>过去12月的盈利不能为空，请重新输入！</div>");
+                        twelfth.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!ninth.val()) {
+                    if (!ninth.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>过去9月的盈利不能为空，请重新输入！</div>");
+                        ninth.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!sixth.val()) {
+                    if (!sixth.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>过去6月的盈利不能为空，请重新输入！</div>");
+                        sixth.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!third.val()) {
+                    if (!third.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>过去3月的盈利不能为空，请重新输入！</div>");
+                        third.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!first.val()) {
+                    if (!first.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>过去1月的盈利不能为空，请重新输入！</div>");
+                        first.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!mortgage1.val()) {
+                    if (!mortgage1.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>贷款抵押担保不能为空，请重新输入!</div>");
+                        mortgage1.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!testAccount(twelfth.val())) {
+                    if (!twelfth.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>请按照正确格式的输入过去12月的盈利!</div>");
+                        twelfth.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!testAccount(ninth.val())) {
+                    if (!ninth.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>请按照正确格式的输入过去9月的盈利!</div>");
+                        ninth.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!testAccount(sixth.val())) {
+                    if (!sixth.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>请按照正确格式的输入过去6月的盈利!</div>");
+                        sixth.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!testAccount(third.val())) {
+                    if (!third.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>请按照正确格式的输入过去3月的盈利!</div>");
+                        third.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!testAccount(first.val())) {
+                    if (!first.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>请按照正确格式的输入过去1月的盈利!</div>");
+                        first.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
                 var data = {
                     companyID: localStorage.getItem("companyID"),
                     loanCredit: sessionStorage.getItem("loanCredit"),
@@ -204,7 +264,6 @@
                 generate_report(data);
             })
         });
-
     </script>
 </body>
 

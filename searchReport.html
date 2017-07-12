@@ -38,18 +38,22 @@
                 $(".container").before(data);
             });
             $("#search").click(function() {
-                var companyName = $("#searchReport").val();
-                if (!companyName) {
-                    alert("公司名称不能为空，请重新输入）");
-                    return false;
+                var companyName = $("#searchReport");
+                if (!companyName.val()) {
+                    if (!companyName.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>公司不能为空，请输入！</div>");
+                        companyName.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
                 }
                 var data = {
-                    companyName: companyName
+                    companyName: companyName.val()
                 };
                 ajaxSearch_Report1(data);
-            })
+            });
         })
-
     </script>
 </body>
 

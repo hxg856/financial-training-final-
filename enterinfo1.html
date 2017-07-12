@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>请填写客户信息</title>
+    <title>请填写公司信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/common.js"></script>
-<script src="js/function.js"></script>
-<script src="js/ajax.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/ajax.js"></script>
 </head>
 
 <body>
@@ -63,39 +63,66 @@
                 $(".container").before(data);
             });
             $("#createinfo1").click(function() {
-                var comName = $("#companyName").val();
-                var leName = $("#corporation").val();
-                var comNature = $("#nature").val();
-                var mBus = $("#business").val();
-                var loanRe = $("#reason").val();
-
-                if (!comName) {
-                    alert("公司名称不能为空，请输入最长30位公司名称");
-                    return false;
+                var comName = $("#companyName");
+                var leName = $("#corporation");
+                var comNature = $("#nature");
+                var mBus = $("#business");
+                var loanRe = $("#reason");
+                if (!comName.val()) {
+                    if (!comName.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>公司名称不能为空，请输入最长30位公司名称！</div>");
+                        comName.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
                 }
-                if (!leName) {
-                    alert("法人代表不能为空，请输入最长30位公司名称");
-                    return false;
+                if (!leName.val()) {
+                    if (!leName.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>法人代表不能为空，请输入最长30位法人名称！</div>");
+                        leName.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
                 }
-                if (!comNature) {
-                    alert("公司性质不能为空，请输入最长30位公司名称");
-                    return false;
+                if (!comNature.val()) {
+                    if (!comNature.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>公司性质不能为空，请输入最长30位公司性质！</div>");
+                        comNature.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
                 }
-                if (!mBus) {
-                    alert("主要业务不能为空，请输入最长30位公司名称");
-                    return false;
+                if (!mBus.val()) {
+                    if (!mBus.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>主要业务不能为空，请输入最长30位主要业务！</div>");
+                        mBus.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
+                }
+                if (!loanRe.val()) {
+                    if (!loanRe.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>借贷原因不能为空，请输入最长50位借贷原因！</div>");
+                        loanRe.after($alertInfo);
+                        return false;
+                    } else {
+                        return false;
+                    }
                 }
                 var data = {
-                    companyName: comName,
-                    legalName: leName,
-                    companyNature: comNature,
-                    mainBusiness: mBus,
-                    loanReason: loanRe
+                    companyName: comName.val(),
+                    legalName: leName.val(),
+                    companyNature: comNature.val(),
+                    mainBusiness: mBus.val(),
+                    loanReason: loanRe.val()
                 };
                 enterinfo1(data);
             });
         })
-
     </script>
 </body>
 
