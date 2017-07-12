@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>查询报告</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/function.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>查询报告</h1>
+        </div>
+        <div class="bodypart">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="searchReport" class="col-sm-4 col-md-4 col-lg-4 control-label">请输入公司名称</label>
+                    <div class="col-sm-8 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" id="searchReport" placeholder="请输入公司名称">
+                    </div>
+                </div>
+                <div class="divCenter"><button id="search" class="btn btn-default">查询</button>
+                    <button id="returnHome" class="btn btn-default">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/verify.js"></script>
+    <script>
+        $(function() {
+            $.get("nav.html", function(data) {
+                $(".container").before(data);
+            });
+            $("#search").click(function() {
+                var companyName = $("#searchReport").val();
+                if (!companyName) {
+                    alert("公司名称不能为空，请重新输入）");
+                    return false;
+                }
+                var data = {
+                    companyName: companyName
+                };
+                ajaxSearch_Report1(data);
+            })
+        })
+
+    </script>
+</body>
+
+</html>

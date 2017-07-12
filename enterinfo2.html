@@ -1,0 +1,109 @@
+<!DOCTYPE html> //
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>请填写借贷信息</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>请填写借贷信息</h1>
+        </div>
+        <div class="bodypart">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="quota" class=" col-sm-4 col-lg-4 col-md-4 control-label">借贷额度（万元）</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="quota" class="form-control required" placeholder="请自此输入您的借贷额度（万元为单位)" maxlength="20">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="usage" class="col-sm-4 col-lg-4 col-md-4 control-label">借贷用途</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="usage" class="form-control required" placeholder="请输入贷款用途" maxlength="50">
+                    </div>
+
+                    <!--                radio的ID未写-->
+                </div>
+                <div class="form-group">
+                    <label for="wayselect" class="col-sm-4 col-lg-4 col-md-4 control-label">还款方式</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <select name="ways" id="wayselect">
+                            <option value="1">一次性还清</option>
+                            <option value="2">等额本息分期还款</option>
+                            <option value="3">等额本金分期还款</option>
+                            <option value="4">活期还款</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="deadline" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款时间（月份）</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="deadline" class="form-control required" placeholder="请输入贷款期限(以月份为单位)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="source" class=" col-sm-4 col-lg-4 col-md-4 control-label">还款来源</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="source" class="form-control required" placeholder="请在此输入公司还款来源" maxlength="50">
+                    </div>
+                </div>
+                <div class="form-group divCenter">
+                    <button class="btn btn-default" type="submit" id="createinfo2">下一步</button>
+                    <button class="btn btn-default" id="returnHome" style="display:inline-block">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/verify.js"></script>
+    <script>
+        $(function() {
+            $.get("nav.html", function(data) {
+                $(".container").before(data);
+            });
+            var userID = sessionStorage.getItem("userID");
+            //alert(userID);
+            $("#createinfo2").click(function() {
+                if (!$("#quota").val()) {
+                    alert("贷款额度不能为空，请重新输入您的贷款额度");
+                    return false;
+                }
+                if (!$("#usage").val()) {
+                    alert("贷款用途不能为空，请输入您的贷款用途");
+                    return false;
+                }
+                if (!$("#deadline").val()) {
+                    alert("贷款时间不能为空，请输入贷款期限时长");
+                    return false;
+                }
+                if (!$("#source").val()) {
+                    alert("还款来源不能为空，请输入您的主要还款待援");
+                    return false;
+                }
+                if (!testload($("#quota").val())) {
+                    alert("请按照正确的输入格式输入贷款额度");
+                    return false;
+                }
+                if (!testtime($("#deadline").val())) {
+                    alert("请按照正确格式的输入贷款时间（最长贷款时间为20年）");
+                    return false;
+                }
+
+                sessionStorage.setItem("loanCredit", $("#quota").val());
+                sessionStorage.setItem("loanAim", $("#usage").val());
+                sessionStorage.setItem("repaymentMethod", $("#wayselect").val());
+                sessionStorage.setItem("repaymentTime", $("#deadline").val());
+                sessionStorage.setItem("repaymentSource", $("#source").val());
+                window.location.href = "enterinfo3.html";
+            });
+        })
+    </script>
+</body>
+
+</html>

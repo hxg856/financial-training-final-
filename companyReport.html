@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/ajax.js"></script>
+    <style>
+        #company_name {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        #exit {
+            text-align: center;
+            position: relative;
+            top: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="company_name">
+            <p class="h1">公司名称</p>
+        </div>
+        <div class="row" style="position:relative; top:50px;">
+
+            <div class="col-md-2 col-md-offset-2 col-sm-12">
+                <ul class="nav nav-pills nav-stacked">
+                    <p class="h3">详细报告</p>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><button class="btn btn-default" onclick="menuBar(1)">公司信息</button></li>
+                        <li>
+                            <button class="btn btn-default" onclick="menuBar(2)">借贷信息</button>
+                            <ul>
+                                <li><button class="btn btn-default" onclick="menuBar(3)">借贷额度</button></li>
+                                <li><button class="btn btn-default" onclick="menuBar(4)">还款方式/时间</button></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="btn btn-default" onclick="menuBar(5)">风险评级</button>
+                            <ul>
+                                <li><button class="btn btn-default" onclick="menuBar(6)">借款人品质</button></li>
+                                <li><button class="btn btn-default" onclick="menuBar(7)">公司业绩</button></li>
+                                <li><button class="btn btn-default" onclick="menuBar(8)">历史利润</button></li>
+                                <li><button class="btn btn-default" onclick="menuBar(9)">信贷历史</button></li>
+                            </ul>
+                        </li>
+                        <li><button class="btn btn-default" onclick="menuBar(10)">最终报告</button></li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="col-md-7 col-sm-12">
+                <div class="content" id="content_1" style="display:block; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">公司信息</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">借贷主体</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="name"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">法人代表</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="legalName"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">公司性质</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="companyNature"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">主要业务</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="mainBusiness"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">借贷原因</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="loanReason"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_2" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">借贷信息</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">借贷额度</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="loanCredit"></p><span>万元</span>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">借贷用途</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="loanAim"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">还款方式</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="repaymentMethod"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">贷款时间</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="repaymentTime"></p><span>月</span>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">还款来源</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="repaymentSource"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_3" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">借贷额度</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">借贷额度</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="loanCredit1"></p><span>万元</span>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">评级范围</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="grade1"></p><span>分</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_4" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">还款方式/时间</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">还款方式</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="repaymentMethod1"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">还款时间</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="repaymentTime1"></p><span>月</span>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">最终评分</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="grade2"></p><span>分</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_5" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">风险评级</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">借款人品质</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="characterClass"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">公司业绩</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="historicalProfit"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">历史利润</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="companyAchievement"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">信贷历史</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="historicalCreditLoan"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">是否还清</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="historicalCreditRepay"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">抵押担保</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="mortgage"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_6" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">借款人品质</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">借款人品质</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="characterClass1"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_7" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">公司业绩</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">公司业绩</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="historicalProfit1"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_8" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">历史利润</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">历史利润</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="companyAchievement1"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_9" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">信贷历史</p>
+                    <div class="row divCenter">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">信贷历史</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="historicalCreditLoan1"></p>
+                                </div>
+                            </div>
+                            <div style="display:block">
+                                <label class="col-sm-4 control-label">是否还清</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" id="historicalCreditRepay1"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="content_10" style="display:none; position:relative; top:10px;">
+                    <p style="text-align:center" class="h3">最终报告</p>
+                    <div class="row divCenter" style="border:1px solid #000;">
+                        <div class="col-md-7 col-md-offset-3 col-sm-12 form-horizontal">
+                            <div style="display:block">
+                                <div class="col-sm-11">
+                                    <p class="form-control-static">该公司欲贷款
+                                        <span id="loanCredit2"></span>万元，处于
+                                        <span id="grade3"></span>评级范围内。</p>
+                                    <p>经评定，该公司获得
+                                        <span id="grade4"></span>分。</p>
+                                    <p>
+                                        <span id="dis">符合/不符合</span>贷款要求。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="exit">
+            <button class="btn btn-default" id="returnHome" style="display:inline-block">返回</button>
+            <button id="test" class="btn btn-default">测试</button>
+        </div>
+    </div>
+    <script>
+        $(function() {
+
+            var companyID = sessionStorage.getItem("companyID");
+            //var companyID = "b6a1a9f8e6964dc0a568f5a4929ce76e";
+            var companyName = sessionStorage.getItem("companyName");
+            var data = {
+                companyID: companyID
+            };
+            var data1 = {
+                companyName: companyName
+            };
+            ajaxSearch_company(data, companyInfo);
+            ajaxSearch_loan(data, loanInfo);
+            ajaxSearch_report(data1, verifyInfo);
+            //            $.ajax({
+            //                url: "http://119.29.236.25/search_company",
+            //                type: "POST",
+            //                data: data,
+            //                dataType: "json",
+            //                success: companyInfo,
+            //                error: function(res) {
+            //                    console.log("error", res)
+            //                }
+            //
+            //            });
+            //            $.ajax({
+            //                url: "http://119.29.236.25/search_loan",
+            //                type: "POST",
+            //                dataType: "json",
+            //                data: data,
+            //                success: loanInfo,
+            //                error: function(res) {
+            //                    console.log("error", res)
+            //                }
+            //            });
+            //            $.ajax({
+            //                url: "http://119.29.236.25/search_report",
+            //                type: "POST",
+            //                dataType: "json",
+            //                data: data1,
+            //                success: verifyInfo,
+            //                error: function(res) {
+            //                    console.log("error", res)
+            //                }
+            //            });
+        })
+
+    </script>
+</body>
+<script>
+    function menuBar(num) {
+        for (var i = 1; i < 11; i++) {
+            document.getElementById('content_' + i).style.display = 'none';
+        }
+        document.getElementById('content_' + num).style.display = 'block';
+    }
+
+</script>
+<script>
+    $(function() {
+        $.get("nav.html", function(data) {
+            $(".container").before(data);
+        });
+    });
+
+</script>
+
+</html>

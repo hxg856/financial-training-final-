@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>请继续填写借贷信息</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/ajax.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>请继续填写贷款信息</h1>
+        </div>
+        <div class="bodepart">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="twelfth" class="col-sm-4 col-lg-4 col-md-4 control-label">借款人品质</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <select name="characterClass" id="characterClass">
+                                <option value="1">优秀/Excellent</option>
+                                <option value="2">良好/Good</option>
+                                <option value="3">一般/Nomal</option>
+                                <option value="4">不良/bad</option>
+                                <option value="5">极差/worst</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pal" class="col-sm-4 col-lg-4 col-md-4 control-label">公司盈利</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <select id="pal">
+                                <option value="1">盈利</option>
+                                <option value="2">亏损</option>
+                        </select>
+                        <select id="sum">
+                                <option value="1">1万-100万</option>
+                                <option value="2">100万-200万</option>
+                                <option value="3">200万-300万</option>
+                                <option value="4">300万-500万</option>
+                                <option value="5">500万-1000万</option>
+                                <option value="6">1000万-2000万</option>
+                                <option value="7">2000万-3000万</option>
+                                <option value="8">3000万-5000万</option>
+                                <option value="9">5000万-10000万</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="twelfth" class="col-sm-4 col-lg-4 col-md-4 control-label">过去十二个月的盈利（万元）</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="twelfth" class="form-control required" placeholder="请输入过去12个月的盈利情况（若亏损则输入负数）">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ninth" class="col-sm-4 col-lg-4 col-md-4 control-label">过去9个月的盈利（万元）</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="ninth" class="form-control required" placeholder="请输入过去9个月的盈利情况（若亏损则输入负数）">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sixth" class="col-sm-4 col-lg-4 col-md-4 control-label">过去6个月的盈利（万元）</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="sixth" class="form-control required" placeholder="请输入过去6个月的盈利情况（若亏损则输入负数）">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="third" class="col-sm-4 col-lg-4 col-md-4 control-label">过去3个月的盈利（万元）</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="third" class="form-control required" placeholder="请输入过去3个月的盈利情况（若亏损则输入负数）">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="first" class="col-sm-4 col-lg-4 col-md-4 control-label">过去1个月的盈利（万元）</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="first" class="form-control required" placeholder="请输入过去1个月的盈利情况（若亏损则输入负数）">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loanOrNot" class="col-sm-4 col-lg-4 col-md-4 control-label">信贷历史</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <select name="characterClassType" id="loanOrNot">
+                                <option value="true">有</option>
+                                <option value="false">无</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="repayOrNot" class="col-sm-4 col-lg-4 col-md-4 control-label">是否还清</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <select id="repayOrNot">
+                                <option value="true">是</option>
+                                <option value="false">否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mortgage" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款抵押担保</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="mortgage" class="form-control required" placeholder="请输入公司还款来源情况" maxlength="50">
+                    </div>
+                </div>
+                <div class="form-group divCenter">
+                    <button class="btn btn-default" type="submit" id="createinfo3">下一步</button>
+                    <button class="btn btn-default" id="returnHome" style="display:inline-block">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/verify.js"></script>
+    <script>
+        $(function() {
+            $.get("nav.html", function(data) {
+                $(".container").before(data);
+            });
+            $("#createinfo3").click(function() {
+                var historicalProfit = {
+                    twelfth: $("#twelfth").val(),
+                    ninth: $("#ninth").val(),
+                    sixth: $("#sixth").val(),
+                    third: $("#third").val(),
+                    first: $("#first").val()
+
+                };
+                var mortgage = $("#mortgage").val();
+                var characterClass = $("#characterClass").val();
+                var companyAchievement = {
+                    pal: $("#pal").val(),
+                    sum: $("#sum").val()
+                };
+                var historicalCredit = {
+                    loanOrNot: $("#loanOrNot").val(),
+                    repayOrNot: $("#repayOrNot").val()
+                };
+                //逻辑未加
+                if (!$("#twelfth").val()) {
+                    alert("过去12月的盈利不能为空，请重新输入");
+                    return false;
+                }
+                if (!$("#ninth").val()) {
+                    alert("过去9月的盈利不能为空，请重新输入");
+                    return false;
+                }
+                if (!$("#sixth").val()) {
+                    alert("过去6月的盈利不能为空，请重新输入");
+                    return false;
+                }
+                if (!$("#third").val()) {
+                    alert("过去3月的盈利不能为空，请重新输入");
+                    return false;
+                }
+                if (!$("#first").val()) {
+                    alert("过去1月的盈利不能为空，请重新输入");
+                    return false;
+                }
+                if (!mortgage) {
+                    alert("贷款抵押担保不能为空，请重新输入）");
+                    return false;
+                }
+
+                if (!testAccount(historicalProfit.twelfth)) {
+                    alert("请按照正确格式的输入过去12月的盈利");
+                    return false;
+                }
+                if (!testAccount(historicalProfit.ninth)) {
+                    alert("请按照正确格式的输入过去9月的盈利");
+                    return false;
+                }
+                if (!testAccount(historicalProfit.sixth)) {
+                    alert("请按照正确格式的输入过去6月的盈利");
+                    return false;
+                }
+                if (!testAccount(historicalProfit.third)) {
+                    alert("请按照正确格式的输入过去3月的盈利");
+                    return false;
+                }
+                if (!testAccount(historicalProfit.first)) {
+                    alert("请按照正确格式的输入过去1月的盈利");
+                    return false;
+                }
+
+                var data = {
+                    companyID: localStorage.getItem("companyID"),
+                    loanCredit: sessionStorage.getItem("loanCredit"),
+                    loanAim: sessionStorage.getItem("loanAim"),
+                    repaymentMethod: sessionStorage.getItem("repaymentMethod"),
+                    repaymentTime: sessionStorage.getItem("repaymentTime"),
+                    repaymentSource: sessionStorage.getItem("repaymentSource"),
+                    characterClass: characterClass,
+                    companyAchievement: companyAchievement,
+                    historicalProfit: historicalProfit,
+                    historicalCredit: historicalCredit,
+                    mortgage: mortgage
+                };
+                submit_loan(data);
+                var data2 = {
+                    companyID: localStorage.getItem("companyID")
+                };
+                generate_report(data);
+            })
+        });
+
+    </script>
+</body>
+
+</html>

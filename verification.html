@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>结果评价</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/ajax.js"></script>
+    <style>
+        span {
+            background-color: aqua;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>结果评价</h1>
+        </div>
+        <div class="bodypart">
+            <div>
+                <p>贷款申请方：<span id="ccName"></span></p>
+                <p>本报告的ID（请记住本ID，这是唯一找到本报告的凭证）：<span id="reportID"></span></p>
+                <ul>
+                    <li>
+                        <span id="cName"></span>欲申请
+                        <span id="cCredit"></span>万的贷款，该金额要求评分为
+                        <span id="cGrede1"></span>分以上。</li>
+                    <li>该公司采用
+                        <span id="cRepayMethod"></span>方式，申请在
+                        <span id="cRepayTime"></span>月时间内还清，项目评分为
+                        <span id="cGrede2"></span>分</li>
+                    <li>该公司借款人品质
+                        <span id="cCharater"></span>，项目评分
+                        <span id="cGrede3"></span>分。</li>
+                    <li>公司业绩为
+                        <span id="cPal"></span>
+                        <span id="cSum"></span>，项目评分
+                        <span id="cGrede4"></span>分。该公司业务能力
+                        <span id="cAch"></span></li>
+                    <li> 该公司过去1年内利润能力
+                        <span id="cPro"></span>，项目得分为
+                        <span id="cGrede5"></span>分。</li>
+                    <li>该公司：
+                        <span id="cLoan"></span>且
+                        <span id="cRepay"></span>，项目评分为
+                        <span id="cGrede6"></span>分</li>
+                    <li>经评定，该公司的贷款申请最终评分为
+                        <span id="cGrede7"></span>分，
+                        <span id="cDis"></span>要求。</li>
+                </ul>
+            </div>
+            <div class="divCenter">
+                <button id="submit" class="btn btn-default">显示结果</button>
+                <button id="returnHome" class="btn btn-default">退出</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            var companyID = localStorage.getItem("companyID");
+            //var companyID = "b6a1a9f8e6964dc0a568f5a4929ce76e";
+            var data = {
+                companyID: companyID
+            };
+            var companyName = sessionStorage.getItem("companyName");
+            var data1 = {
+                companyName: companyName
+            };
+            ajaxSearch_company(data, enterCompanyInfo);
+            ajaxSearch_loan(data, enterloanInfo);
+
+            $("#submit").click(function() {
+                ajaxSearch_report(data1, enterVerifyInfo);
+            });
+        })
+
+    </script>
+</body>
+
+</html>
