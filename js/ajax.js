@@ -1,6 +1,10 @@
+//路径名，若部署到服务器，记得改这里。
+var path = "http://119.29.236.25";
+
+
 function ajaxSignIn(data) {
     $.ajax({
-        url: "http://119.29.236.25/login",
+        url: path + "/login",
         type: "POST",
         dataType: "json",
         data: data,
@@ -13,7 +17,7 @@ function ajaxSignIn(data) {
 
 function ajaxRevisePass(data) {
     $.ajax({
-        url: "http://119.29.236.25/modify_user_password",
+        url: path + "/modify_user_password",
         type: "POST",
         dataType: "json",
         data: data,
@@ -28,7 +32,7 @@ function ajaxRevisePass(data) {
 
 function enterinfo1(data) {
     $.ajax({
-        url: "http://119.29.236.25/entry_company",
+        url: path + "/entry_company",
         type: "POST",
         dataType: "json",
         data: data,
@@ -45,7 +49,7 @@ function enterinfo1(data) {
 
 function submit_loan(data) {
     $.ajax({
-        url: "http://119.29.236.25/submit_loan",
+        url: path + "/submit_loan",
         type: "POST",
         dataType: "json",
         data: data,
@@ -60,7 +64,7 @@ function submit_loan(data) {
 
 function generate_report(data) {
     $.ajax({
-        url: "http://119.29.236.25/generate_report",
+        url: path + "/generate_report",
         type: "POST",
         dataType: "json",
         data: data,
@@ -76,7 +80,7 @@ function generate_report(data) {
 
 function ajaxSearch_Report1(data) {
     $.ajax({
-        url: "http://119.29.236.25/search_report",
+        url: path + "/search_report",
         type: "POST",
         dataType: "json",
         data: data,
@@ -106,7 +110,7 @@ function ajaxSearch_Report1(data) {
 
 function delete_report(data) {
     $.ajax({
-        url: "http://119.29.236.25/delete_report",
+        url: path + "/delete_report",
         type: "POST",
         dataType: "json",
         data: data,
@@ -130,7 +134,7 @@ function delete_report(data) {
 
 function ajaxSearch_company(data, func) {
     $.ajax({
-        url: "http://119.29.236.25/search_company",
+        url: path + "/search_company",
         type: "POST",
         dataType: "json",
         data: data,
@@ -143,7 +147,7 @@ function ajaxSearch_company(data, func) {
 
 function ajaxSearch_loan(data, func) {
     $.ajax({
-        url: "http://119.29.236.25/search_loan",
+        url: path + "/search_loan",
         type: "POST",
         dataType: "json",
         data: data,
@@ -156,13 +160,51 @@ function ajaxSearch_loan(data, func) {
 
 function ajaxSearch_report(data, func) {
     $.ajax({
-        url: "http://119.29.236.25/search_report",
+        url: path + "/search_report",
         type: "POST",
         dataType: "json",
         data: data,
         success: func,
         error: function (res) {
             console.log("error", res)
+        }
+    });
+}
+
+
+//未测试，不知道能不能用
+function navGetMyself(userID) {
+    $.ajax({
+        url: path + "/get_myself",
+        type: "GET",
+        dataType: "json",
+        success: function (res) {
+            //console.log(res);
+            //登录后在导航栏显示username
+            userID = res.data.user.userID;
+            var userName = res.data.user.usename;
+            var $name = $("<p class='navbar-text navbar-left' style='font-size:1.2em'></p>");
+            $name.text(userName);
+            $("#afname").before($name);
+            //禁用删除按钮
+            var position = res.data.user.userPosition;
+            if (position === 2) {
+                $("#deleteReport").removeAttr({
+                    "disabled": "disabled"
+                });
+            }
+        }
+    });
+}
+
+function navExit(userID) {
+    $.ajax({
+        url: path + "/exit",
+        type: "POST",
+        dataType: "json",
+        data: data,
+        success: function (res) {
+            window.location.href = "signin.html";
         }
     });
 }

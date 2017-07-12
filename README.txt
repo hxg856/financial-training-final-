@@ -2,7 +2,10 @@
 1.登录显示用户已经登录
 2.数据库有公司重名，若出现重名，返回错误。
 3.get_myself时返回user{}为空
+4.若非管理员禁用删除报告button功能代码未测试。
 
+
+所有的ajax请求的路径已经抽取到ajax首行。
 
 nav.html为导航栏，包括get_myself以及exit的ajax代码。
 
