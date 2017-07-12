@@ -33,7 +33,7 @@ function revise(res) {
     }
 }
 
-
+//以下代码耦合性比较强，最好不要改。
 function companyInfo(res) {
     var com = res.data.company;
     $("#name").text(com.CompanyName);

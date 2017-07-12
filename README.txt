@@ -6,6 +6,8 @@
 
 
 所有的ajax请求的路径已经抽取到ajax首行。
+显示报告信息的ajax和function耦合性比较强，因为是临时抽出来的，方便条理代码而已，最好别改！！
+注意，上面那条是重点！
 
 nav.html为导航栏，包括get_myself以及exit的ajax代码。
 
